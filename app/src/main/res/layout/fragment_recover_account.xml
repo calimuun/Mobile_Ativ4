@@ -14,14 +14,16 @@
         android:orientation="vertical" >
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_back" >
+            app:navigationIcon="@drawable/ic_back"
+            android:paddingTop="40dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recuperar Conta"
+                android:text="Recuperar conta"
                 android:textColor="@color/white"
                 android:layout_gravity="center_horizontal" />
 
@@ -52,6 +54,7 @@
                 android:textColor="@color/white" />
 
             <EditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:hint="Digite seu e-mail"
@@ -61,6 +64,7 @@
                 android:background="@drawable/bg_edit_text" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/enviar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Enviar"

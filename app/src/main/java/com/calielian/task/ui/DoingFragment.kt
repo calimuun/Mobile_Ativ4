@@ -5,9 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.calielian.task.data.model.Status
+import com.calielian.task.data.model.Task
 import com.calielian.task.databinding.FragmentDoingBinding
+import com.calielian.task.ui.adapter.TaskAdapter
 
 class DoingFragment : Fragment() {
+
+    private lateinit var taskAdapter: TaskAdapter
+
     private var _biding: FragmentDoingBinding? = null
     private val binding get() = _biding!!
 
@@ -18,6 +26,45 @@ class DoingFragment : Fragment() {
         _biding = FragmentDoingBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecyclerViewTask(getTask())
+    }
+
+    private fun initRecyclerViewTask(taskList: List<Task>) {
+        taskAdapter = TaskAdapter(requireContext(), taskList) { task, option -> optionSelected(task, option) }
+        binding.recyclerViewTask.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewTask.setHasFixedSize(true)
+
+        binding.recyclerViewTask.adapter = taskAdapter
+    }
+
+    private fun optionSelected(task: Task, option: Int) {
+        when (option) {
+            TaskAdapter.SELECT_REMOVER -> {
+                Toast.makeText(requireContext(), "Removendo ${task.description}", Toast.LENGTH_SHORT).show()
+            }
+
+            TaskAdapter.SELECT_EDIT -> {
+                Toast.makeText(requireContext(), "Editando ${task.description}", Toast.LENGTH_SHORT).show()
+            }
+
+            TaskAdapter.SELECT_DETAILS -> {
+                Toast.makeText(requireContext(), "Detalhes ${task.description}", Toast.LENGTH_SHORT).show()
+            }
+
+            TaskAdapter.SELECT_NEXT -> {
+                Toast.makeText(requireContext(), "Próximo", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun getTask() = listOf(
+        Task("5", "Terminar o kanban", Status.DOING),
+        Task("6", "Passar de ano", Status.DOING),
+        Task("7", "Corrigir bug no Parcelize", Status.DOING),
+    )
 
     override fun onDestroyView() {
         super.onDestroyView()

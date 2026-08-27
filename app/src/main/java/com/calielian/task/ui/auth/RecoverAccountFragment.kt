@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.calielian.task.R
 import com.calielian.task.databinding.FragmentRecoverAccountBinding
 import com.calielian.task.util.initToolbar
+import com.calielian.task.util.showBottomSheet
 
 class RecoverAccountFragment : Fragment() {
 
@@ -40,7 +42,7 @@ class RecoverAccountFragment : Fragment() {
         if (email.isNotBlank()){
             Toast.makeText(requireContext(), "Tudo OK!", Toast.LENGTH_SHORT).show()
         }else{
-            Toast.makeText(requireContext(), "Preencha um email válido!", Toast.LENGTH_SHORT).show()
+            showBottomSheet(message = R.string.email_empty)
         }
     }
 

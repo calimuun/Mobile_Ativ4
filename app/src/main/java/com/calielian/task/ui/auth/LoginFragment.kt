@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.calielian.task.R
 import com.calielian.task.databinding.FragmentLoginBinding
+import com.calielian.task.util.showBottomSheet
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
@@ -49,10 +50,10 @@ class LoginFragment : Fragment() {
             if(senha.isNotBlank()){
                 findNavController().navigate(R.id.action_global_homeFragment)
             }else{
-                Toast.makeText(requireContext(), "Preencha a senha!", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message = R.string.password_empty)
             }
         }else{
-            Toast.makeText(requireContext(), "Preencha  seu email!", Toast.LENGTH_SHORT).show()
+            showBottomSheet(message = R.string.email_empty)
         }
     }
 

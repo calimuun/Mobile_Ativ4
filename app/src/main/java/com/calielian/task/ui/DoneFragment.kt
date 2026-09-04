@@ -57,8 +57,8 @@ class DoneFragment : Fragment() {
                 Toast.makeText(requireContext(), "Detalhes ${task.description}", Toast.LENGTH_SHORT).show()
             }
 
-            TaskAdapter.SELECT_NEXT -> {
-                Toast.makeText(requireContext(), "Próximo", Toast.LENGTH_SHORT).show()
+            TaskAdapter.SELECT_BACK -> {
+                Toast.makeText(requireContext(), "Anterior", Toast.LENGTH_SHORT).show()
             }
         }
     }

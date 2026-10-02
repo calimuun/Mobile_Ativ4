@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "62350531049",
+    "project_id": "taskapp-908e6",
+    "storage_bucket": "taskapp-908e6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62350531049:android:a133a8d11c94fadf119378",
+        "android_client_info": {
+          "package_name": "com.calielian.task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCLhK2ViyIA-k1ehdd2FLviB6h2b46k3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

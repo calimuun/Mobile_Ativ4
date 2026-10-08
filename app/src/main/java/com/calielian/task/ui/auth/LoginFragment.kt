@@ -10,10 +10,14 @@ import androidx.navigation.fragment.findNavController
 import com.calielian.task.R
 import com.calielian.task.databinding.FragmentLoginBinding
 import com.calielian.task.util.showBottomSheet
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +30,24 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        auth = FirebaseAuth.getInstance()
+
         initListener()
+    }
+
+    private fun loginUser(email: String, password: String) {
+        try {
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        findNavController().navigate(R.id.action_global_homeFragment)
+                    } else {
+                        Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+        } catch (e: Exception) {
+            Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun initListener() {
@@ -47,8 +68,8 @@ class LoginFragment : Fragment() {
         val email = binding.email.text.toString().trim()
         val senha = binding.senha.text.toString().trim()
         if(email.isNotBlank()){
-            if(senha.isNotBlank()){
-                findNavController().navigate(R.id.action_global_homeFragment)
+            if(senha.isNotBlank()) {
+                loginUser(email, senha)
             }else{
                 showBottomSheet(message = getString(R.string.password_empty))
             }

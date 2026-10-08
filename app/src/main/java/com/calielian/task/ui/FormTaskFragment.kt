@@ -7,14 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.calielian.task.R
+import com.calielian.task.data.model.Task
 import com.calielian.task.databinding.FragmentFormTaskBinding
 import com.calielian.task.util.initToolbar
 import com.calielian.task.util.showBottomSheet
+import com.google.android.gms.tasks.Tasks
 
 class FormTaskFragment : Fragment() {
 
     private var _binding: FragmentFormTaskBinding? = null
     private val binding get() = _binding!!
+    private lateinit var tasks: Task
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

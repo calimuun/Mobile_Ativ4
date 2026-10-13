@@ -10,8 +10,10 @@ import androidx.navigation.fragment.findNavController
 import com.calielian.task.R
 import com.calielian.task.databinding.FragmentLoginBinding
 import com.calielian.task.util.showBottomSheet
+import com.google.firebase.Firebase
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
@@ -24,13 +26,12 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        auth = Firebase.auth
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        auth = FirebaseAuth.getInstance()
 
         initListener()
     }

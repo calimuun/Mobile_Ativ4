@@ -35,4 +35,7 @@
     <string name="description_text">Descrição</string>
     <string name="new_task">Nova tarefa</string>
     <string name="text_button_message">Mensagem</string>
+
+    <string name="text_save_success_form_task_fragment">Tarefa salva com sucesso</string>
+    <string name="error_generic">Ocorreu um erro</string>
 </resources>

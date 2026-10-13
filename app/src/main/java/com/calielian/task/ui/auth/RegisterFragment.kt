@@ -28,13 +28,13 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        auth = Firebase.auth
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbar(binding.toolbar)
-        auth = Firebase.auth
 
         initListener()
     }

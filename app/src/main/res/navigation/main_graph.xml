@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_homeFragment_to_formTaskFragment"
             app:destination="@id/formTaskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_authentication"
+            app:destination="@id/authentication" />
     </fragment>
     <fragment
         android:id="@+id/formTaskFragment"

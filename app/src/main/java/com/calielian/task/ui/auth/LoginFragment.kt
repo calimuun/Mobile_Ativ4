@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.calielian.task.R
 import com.calielian.task.databinding.FragmentLoginBinding
@@ -37,6 +38,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun loginUser(email: String, password: String) {
+        binding.progressBar.isVisible = true
+
         try {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
@@ -48,6 +51,8 @@ class LoginFragment : Fragment() {
                 }
         } catch (e: Exception) {
             Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+        } finally {
+            binding.progressBar.isVisible = false
         }
     }
 

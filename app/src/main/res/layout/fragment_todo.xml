@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:backgroundTint="@color/white"
-        android:contentDescription="Add task"
+        android:contentDescription="@string/new_task"
         android:src="@drawable/ic_adicionartask"
         android:tint="@color/color_default"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -10,11 +10,12 @@
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/ic_logo" />
+        android:src="@drawable/ic_logo"
+        android:importantForAccessibility="no" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ian Caliel - INFO6"
+        android:text="@string/app_creator"
         android:textColor="@color/white"
         android:textSize="24sp"/>
 

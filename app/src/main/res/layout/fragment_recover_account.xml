@@ -5,20 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.auth.RecoverAccountFragment"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <LinearLayout
         android:id="@+id/linearlayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:layout_marginHorizontal="16dp"
+        android:clipChildren="false"
+        android:clipToPadding="false" >
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:navigationIcon="@drawable/ic_back"
-            android:paddingTop="40dp" >
+            android:paddingTop="40dp"
+            android:paddingStart="-20dp"
+            android:paddingEnd="-20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -26,7 +33,6 @@
                 android:text="@string/text_button_recover_login_fragment"
                 android:textColor="@color/white"
                 android:layout_gravity="center_horizontal" />
-
 
         </com.google.android.material.appbar.MaterialToolbar>
 
@@ -36,7 +42,9 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_marginHorizontal="25dp"
-            android:gravity="center_vertical" >
+            android:gravity="center_vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
             <TextView
                 android:layout_width="match_parent"

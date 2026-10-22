@@ -25,8 +25,6 @@ class FormTaskFragment : Fragment() {
 
     private var _binding: FragmentFormTaskBinding? = null
     private val binding get() = _binding!!
-    private lateinit var task: Task
-    private var newTask: Boolean = true
     private var status: Status= Status.TODO
     private lateinit var reference: DatabaseReference
 
@@ -65,23 +63,23 @@ class FormTaskFragment : Fragment() {
     private fun validateData(){
         val description = binding.editTextDescricao.text.toString().trim()
         if (description.isNotBlank()){
-            task = Task(
-                reference.database.reference.push().key.toString(),
-                description,
-                status
-            )
-            saveTask()
+            saveTask(Task(reference.push().key.toString(),description,status))
         }else{
             showBottomSheet(message = getString(R.string.description_empty_form_task_fragment))
         }
     }
 
-    private fun saveTask() {
+    private fun saveTask(task: Task) {
+        binding.progressBar.isVisible = true
+
         reference
             .child("task")
             .child(auth.currentUser?.uid ?: "")
             .child(task.id)
-            .setValue(task).addOnCompleteListener { result ->
+            .setValue(mapOf(
+                "description" to task.description,
+                "status" to task.status.toString().lowercase()
+            )).addOnCompleteListener { result ->
                 if (result.isSuccessful) {
                     Toast.makeText(
                         requireContext(),
@@ -90,10 +88,11 @@ class FormTaskFragment : Fragment() {
                     ).show()
                     findNavController().popBackStack()
                 } else {
-                    binding.progressBar.isVisible = false
                     showBottomSheet(message = getString(R.string.error_generic))
                 }
             }
+
+        binding.progressBar.isVisible = false
     }
 
     override fun onDestroyView() {

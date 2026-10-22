@@ -24,6 +24,4 @@ class ViewPageAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter
     override fun getItemCount(): Int {
         return fragmentList.size
     }
-
-
 }

@@ -39,7 +39,6 @@ class TaskAdapter(
             ): Boolean {
                 return oldItem == newItem && oldItem.description == newItem.description
             }
-
         }
     }
 

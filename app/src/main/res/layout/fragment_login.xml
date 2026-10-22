@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.auth.LoginFragment" >
+    tools:context=".ui.auth.LoginFragment"
+    android:clipChildren="false"
+    android:clipToPadding="false" >
 
     <LinearLayout
         android:id="@+id/linearlayout"
@@ -23,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/email_text"
+            android:textStyle="bold"
             android:textColor="@color/white" />
 
         <EditText
@@ -32,6 +35,7 @@
             android:layout_height="48dp"
             android:hint="@string/hint_edit_email"
             android:inputType="textEmailAddress"
+            android:autofillHints="emailAddress"
             android:layout_marginTop="4dp" />
 
         <TextView
@@ -84,12 +88,14 @@
         </LinearLayout>
 
         <ProgressBar
+            android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/white"
             android:layout_gravity="center"
-            android:visibility="invisible"
-            tools:visibility="visible" />
+            android:layout_marginTop="20dp"
+            tools:visibility="visible"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 

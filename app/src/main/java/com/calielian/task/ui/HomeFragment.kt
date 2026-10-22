@@ -5,15 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.calielian.task.R
 import com.calielian.task.databinding.FragmentHomeBinding
 import com.calielian.task.ui.adapter.ViewPageAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class HomeFragment : Fragment() {
 
     private var _biding: FragmentHomeBinding? = null
     private val binding get() = _biding!!
+
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +33,17 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        auth = Firebase.auth
+
         initTabs()
+        binding.btnLogout.setOnClickListener {
+            auth.signOut()
+            findNavController().navigate(R.id.action_homeFragment_to_authentication)
+        }
+
+        binding.floatingActionButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_formTaskFragment)
+        }
     }
 
     private fun initTabs() {

@@ -39,20 +39,6 @@ class RegisterFragment : Fragment() {
         initListener()
     }
 
-    private fun checkAuth() {
-        try {
-            val currentUser = auth.currentUser
-
-            if (currentUser != null) {
-                findNavController().navigate(R.id.action_global_homeFragment)
-            } else {
-                findNavController().navigate(R.id.action_splashFragment_to_authentication)
-            }
-        } catch (e: Exception) {
-            Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_SHORT).show()
-        }
-    }
-
     private fun initListener(){
         binding.registrar.setOnClickListener {
             validateData()
@@ -64,8 +50,6 @@ class RegisterFragment : Fragment() {
         val senha = binding.senha.text.toString().trim()
         if(email.isNotBlank()){
             if(senha.isNotBlank()){
-                binding.progressbar.isVisible = true
-                Toast.makeText(requireContext(), "Tudo OK!", Toast.LENGTH_SHORT).show()
                 registerUser(email, senha)
             }else{
                 showBottomSheet(message = getString(R.string.password_empty_register_fragment))
@@ -76,6 +60,8 @@ class RegisterFragment : Fragment() {
     }
 
     private fun registerUser(email: String, password: String) {
+        binding.progressbar.isVisible = true
+
         try {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
@@ -88,6 +74,8 @@ class RegisterFragment : Fragment() {
                 }
         } catch (e: Exception) {
             Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_SHORT).show()
+        } finally {
+            binding.progressbar.isVisible = false
         }
     }
 
